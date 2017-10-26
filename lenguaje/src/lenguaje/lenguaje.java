@@ -21,11 +21,8 @@ import java.util.Scanner;
  */
 public class lenguaje {
 
-    public static void main(String[] args) {        
-        
-        int times = Integer.valueOf(args[0]);//cogemos de los argumentos las veces que se repetira el proceso
-        String path = args[1];//cogemos de los argumentos la ruta de guardado    
-        
+    public static void main(String[] args) {
+
         int contador = 0;//contador para el bucle while, como maximo valdra times - 1
 
         //creamos una istancia de la clase de jsvs psra el acceso aleatorio de ficheros
@@ -33,6 +30,10 @@ public class lenguaje {
         FileLock bloqueo = null;
 
         try {
+
+            int times = Integer.valueOf(args[0]);//cogemos de los argumentos las veces que se repetira el proceso
+            String path = args[1];//cogemos de los argumentos la ruta de guardado    
+
             //se abre el fichero para lectura/escritura
             fichero = new RandomAccessFile(path, "rwd");
             //bloqueamos el fichero, porque hemos entrado en región crítica
@@ -42,8 +43,6 @@ public class lenguaje {
 
 //                System.out.print("¿Número de cadenas a generar?: ");//**para pruebas**
 //                int times = Integer.parseInt(br.readLine());//**para pruebas**
-                
-
                 while (contador < times) { //iniciamos el bucle para realizar varias palabras
                     String abecedario = "abcdefghijklmnñopqrstuvwxyz";
                     String cadena2 = "";
@@ -53,21 +52,20 @@ public class lenguaje {
                         int caracter = (int) Math.floor(Math.random() * 27); //Generamos la cadena
                         cadena2 = cadena2 + abecedario.charAt(caracter);
                     }
-                    
+
                     //imprimimos en consola para poder comprobar a golpe de vista
                     System.out.println(cadena2);
-                    
+
                     //apuntamos a la ultima posicion escrita del fichero
                     fichero.seek(fichero.length());
 
-                    
                     //escribimos
                     if (fichero.length() != 0) {
                         fichero.writeBytes(System.getProperty("line.separator") + cadena2);
                     } else {
                         fichero.writeBytes(cadena2);
                     }
-                    
+
                     contador++;
                 }
 
@@ -77,7 +75,6 @@ public class lenguaje {
                 System.err.println(e);
                 return;
             }
-
 
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
