@@ -16,11 +16,17 @@ import java.nio.channels.FileLock;
 import java.util.Scanner;
 
 /**
- *
+ *Aplicación que genera un numero determinado de palabras y las guarda en un archivo txt
+ * 
  * @author chern007
  */
-public class lenguaje {
 
+public class lenguaje {
+    
+ /**
+ * @param args (ruta del archivo lenguaje.jar , ruta del archivo de salida).
+ */
+    
     public static void main(String[] args) {
 
         int contador = 0;//contador para el bucle while, como maximo valdra times - 1
